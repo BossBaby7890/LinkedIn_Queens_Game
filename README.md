@@ -1,1 +1,1 @@
-I was inspired by the [Queens](https://www.linkedin.com/showcase/queens-game/posts/?feedView=all) puzzle on LinkedIn as well as this [Github](https://github.com/MathsMarshall/LinkedIn_Queen_puzzle/tree/main) Repo by [Mmesomachi](https://github.com/MathsMarshall)
+I was inspired by the [Queens](https://www.linkedin.com/showcase/queens-game/posts/?feedView=all) Puzzle on LinkedIn as well as this [Github](https://github.com/MathsMarshall/LinkedIn_Queen_puzzle/tree/main) Repo by [Mmesomachi](https://github.com/MathsMarshall)
