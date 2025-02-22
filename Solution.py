@@ -1,7 +1,7 @@
 import tkinter as tk
 import random
 from PIL import Image,ImageTk
-import math
+
 
 class Queens_game():
     def __init__(self, board_size):
@@ -11,14 +11,18 @@ class Queens_game():
         self.Color = '#F5F5F5'
         self.board_color = {}
         self.queens_loc = []
-        self.queen_img = ImageTk.PhotoImage(file = "queens_icon.png")
+        self.queen_img = ImageTk.PhotoImage(Image.open("queens_icon.png"))
         self.image_ids = []
         
     def create_board(self, canvas, size):
+        board_size = size * self.square_size  
+        offset_x = (440 - board_size) // 2  
+        offset_y = (440 - board_size) // 2  
+
         for row in range(size):
             for col in range(size):
-                x1 = col * self.square_size
-                y1 = row * self.square_size
+                x1 = offset_x + col * self.square_size
+                y1 = offset_y + row * self.square_size
                 x2 = x1 + self.square_size
                 y2 = y1 + self.square_size
                 color = "#F5F5F5" 
@@ -107,30 +111,60 @@ class Queens_game():
         
     
     def main(self):
-        self.window.maxsize(700,700)
-        label = tk.Label(text="Queens Game Solver")
-        label.pack()
+        self.window.geometry("650x550")
+        self.window.maxsize(650,550)
+        self.window.minsize(650,550)
 
-        canvas = tk.Canvas(self.window, width=400, height=400) 
-        canvas.pack()
+        label = tk.Label(self.window, text="Queens Game Solver", 
+                 font=("Helvetica", 18, "bold"),
+                 fg="white",
+                 bg="#4A90E2",
+                 padx=20, pady=10,
+                 borderwidth=3, relief="ridge",
+                 width=25)
+
+        label.pack(pady=10)
+
+        canvas = tk.Canvas(self.window, width=440, height=440) 
+        canvas.pack(side= tk.LEFT)
 
         self.create_board(canvas, self.board_size)
         canvas.bind("<Button-1>", self.highlight_overlapping)
         canvas.bind("<B1-Motion>", self.highlight_overlapping) 
 
-        color_bank= ['#96BEFF', '#FFC992', '#E6F388', '#DFDFDF', '#BBA3E2', '#B9B29E', '#FF7B60', '#B3DFA0', '#423f44', "#634963"]
-        colors = random.sample(color_bank, k = self.board_size)
 
-        for color in colors:
-            btn = tk.Button(master=self.window, background=color, height = 2, width=5,command= lambda c = color:self.select_color(c))
-            btn.pack(side= tk.LEFT)
-        
-        reset_btn = tk.Button(master=self.window, background='gray', height = 2, width=7,text ='Reset', command= lambda : self.reset(canvas=canvas))
-        reset_btn.pack(side = tk.RIGHT)
-        solve_btn = tk.Button(master=self.window, background='gray', height = 2, width=7,text ='Solve', command= lambda : self.place_queens(canvas=canvas))
-        solve_btn.pack(side = tk.RIGHT)
+        btn_frame = tk.Frame(self.window)
+        btn_frame.pack(side=tk.LEFT)  
 
+        top_btn_frame = tk.Frame(btn_frame)
+        top_btn_frame.pack(side=tk.TOP, pady=10)
+
+        reset_btn = tk.Button(master=top_btn_frame, background='gray', height=3, width=10, text='Reset',
+                            command=lambda: self.reset(canvas=canvas), relief=tk.RAISED, border=5)
+        reset_btn.grid(row=0, column=0, padx=5)
+
+        solve_btn = tk.Button(master=top_btn_frame, background='gray', height=3, width=10, text='Solve',
+                            command=lambda: self.place_queens(canvas=canvas), relief=tk.RAISED, border=5)
+        solve_btn.grid(row=0, column=1, padx=5)
+
+        color_grid_frame = tk.Frame(btn_frame)
+        color_grid_frame.pack(side=tk.TOP, pady=10)
+
+        color_bank = ['#96BEFF', '#FFC992', '#E6F388', '#DFDFDF', '#BBA3E2', '#B9B29E', 
+                    '#FF7B60', '#B3DFA0', '#423f44', "#634963", "#223f44"]
+        colors = random.sample(color_bank, k=self.board_size)
+
+        clr_grid_size = 3
+
+        for index, color in enumerate(colors):
+            row, col = divmod(index, clr_grid_size)
+            btn = tk.Button(color_grid_frame, background=color, height=2, width=5,
+                            command=lambda c=color: self.select_color(c))
+            btn.grid(row=row, column=col, padx=5, pady=5)
+            
         self.window.mainloop()
 
 
 
+game_1 = Queens_game(5)
+game_1.main()
