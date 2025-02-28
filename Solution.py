@@ -202,8 +202,3 @@ class Queens_game():
             btn.grid(row=row, column=col, padx=5, pady=5)
             
         self.window.mainloop()
-
-
-game_1 = Queens_game(9)
-game_1.main()
-
