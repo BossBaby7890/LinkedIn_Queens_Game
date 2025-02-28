@@ -61,11 +61,11 @@ Here's a preview of the **Queens Game Solver** :
 
 If you have any questions or suggestions, feel free to reach out!
 
-GitHub: [BossBaby7890]("https://github.com/BossBaby7890")
+GitHub: [BossBaby7890](https://github.com/BossBaby7890)
 
 Email: emmanuelikhide07@gmail.com
 
-LinkedIn: [Emmanuel_Ikhide_Solomon]("https://www.linkedin.com/in/emmanuel-ikhide-solomon-6547981ab/")
+LinkedIn: [Emmanuel_Ikhide_Solomon](https://www.linkedin.com/in/emmanuel-ikhide-solomon-6547981ab/)
 
 
 
